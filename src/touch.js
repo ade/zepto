@@ -6,7 +6,8 @@
   var touch = {},
     touchTimeout, tapTimeout, swipeTimeout, longTapTimeout,
     longTapDelay = 750,
-    gesture
+    gesture,
+    isAndroid = (navigator.userAgent.match(/Android\s([0-9\.]*)/))
 
   function swipeDirection(x1, x2, y1, y2) {
     return Math.abs(x1 - x2) >=
@@ -94,6 +95,10 @@
         cancelLongTap()
         touch.x2 = firstTouch.pageX
         touch.y2 = firstTouch.pageY
+
+        if((Math.abs(touch.x1 - touch.x2) > 10 && Math.abs(touch.y1 - touch.y2) < 25) && isAndroid){
+          e.preventDefault()
+        }
 
         deltaX += Math.abs(touch.x1 - touch.x2)
         deltaY += Math.abs(touch.y1 - touch.y2)
