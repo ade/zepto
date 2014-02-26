@@ -62,6 +62,7 @@
           touch.el.trigger('swipe')
           touch.el.trigger('swipe'+ swipeDirectionFromVelocity)
         }
+        deltaX = deltaY = 0
       })
       .on('touchstart MSPointerDown pointerdown', function(e){
         if((_isPointerType = isPointerEventType(e, 'down')) &&
